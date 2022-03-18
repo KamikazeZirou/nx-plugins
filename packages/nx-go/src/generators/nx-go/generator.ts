@@ -57,17 +57,30 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
 export default async function (tree: Tree, options: NxGoGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      build: {
-        executor: '@kz/nx-go:build',
+      lint: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go vet ./...`,
+          cwd: normalizedOptions.projectRoot
+        }
+      },
+      test: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go test -p 1 ./...`,
+          cwd: normalizedOptions.projectRoot
+        }
       },
     },
     tags: normalizedOptions.parsedTags,
   });
+
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }
