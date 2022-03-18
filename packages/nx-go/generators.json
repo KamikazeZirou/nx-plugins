@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-go",
+  "version": "0.0.1",
+  "generators": {
+    "nx-go": {
+      "factory": "./src/generators/nx-go/generator",
+      "schema": "./src/generators/nx-go/schema.json",
+      "description": "nx-go generator"
+    }
+  }
+}
