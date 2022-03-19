@@ -8,9 +8,9 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { NxGoGeneratorSchema } from './schema';
+import { LibraryGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends NxGoGeneratorSchema {
+interface NormalizedSchema extends LibraryGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,7 +19,7 @@ interface NormalizedSchema extends NxGoGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxGoGeneratorSchema
+  options: LibraryGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
@@ -55,7 +55,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: NxGoGeneratorSchema) {
+export default async function (tree: Tree, options: LibraryGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
