@@ -19,6 +19,11 @@
       "description": "Add tags to the project (used for linting)",
       "alias": "t"
     },
+    "parent": {
+      "type": "string",
+      "description": "A directory where projects are placed. The default value is workspaceLayout.appsDir.",
+      "alias": "p"
+    },
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed",

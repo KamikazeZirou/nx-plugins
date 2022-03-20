@@ -22,11 +22,17 @@ function normalizeOptions(
   options: ApplicationGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
+
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
+
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
+
+  const projectRoot = options.parent
+    ? `${options.parent}/${projectDirectory}`
+    : `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
+
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
@@ -81,8 +87,8 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
         executor: '@nrwl/workspace:run-commands',
         options: {
           "commands": [
-            `mkdir -p ../../dist`,
-            `go build -o ../../dist main.go`
+            `mkdir -p ${offsetFromRoot(normalizedOptions.projectRoot)}/dist`,
+            `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}/dist main.go`
           ],
           cwd: normalizedOptions.projectRoot
         }
