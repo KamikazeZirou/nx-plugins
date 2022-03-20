@@ -86,10 +86,7 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
       build: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          "commands": [
-            `mkdir -p ${offsetFromRoot(normalizedOptions.projectRoot)}/dist`,
-            `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}/dist main.go`
-          ],
+          command: `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}/dist/${normalizedOptions.projectRoot} main.go`,
           cwd: normalizedOptions.projectRoot
         }
       },
