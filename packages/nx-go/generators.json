@@ -3,10 +3,17 @@
   "name": "nx-go",
   "version": "0.0.1",
   "generators": {
-    "nx-go": {
-      "factory": "./src/generators/nx-go/generator",
-      "schema": "./src/generators/nx-go/schema.json",
-      "description": "nx-go generator"
+    "application": {
+      "aliases": ["app"],
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "application generator"
+    },
+    "library": {
+      "aliases": ["lib"],
+      "factory": "./src/generators/library/generator",
+      "schema": "./src/generators/library/schema.json",
+      "description": "library generator"
     }
   }
 }

@@ -8,9 +8,9 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { NxGoGeneratorSchema } from './schema';
+import { ApplicationGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends NxGoGeneratorSchema {
+interface NormalizedSchema extends ApplicationGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,14 +19,20 @@ interface NormalizedSchema extends NxGoGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxGoGeneratorSchema
+  options: ApplicationGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
+
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
+
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
+
+  const projectRoot = options.parent
+    ? `${options.parent}/${projectDirectory}`
+    : `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
+
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
@@ -55,19 +61,46 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: NxGoGeneratorSchema) {
+export default async function (tree: Tree, options: ApplicationGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
+    projectType: 'application',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      build: {
-        executor: '@kz/nx-go:build',
+      lint: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go vet ./...`,
+          cwd: normalizedOptions.projectRoot
+        }
       },
+      test: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go test -p 1 ./...`,
+          cwd: normalizedOptions.projectRoot
+        }
+      },
+      build: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}/dist/${normalizedOptions.projectRoot} main.go`,
+          cwd: normalizedOptions.projectRoot
+        }
+      },
+      serve: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `go run main.go`,
+          cwd: normalizedOptions.projectRoot
+        }
+      }
     },
     tags: normalizedOptions.parsedTags,
   });
+
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }
