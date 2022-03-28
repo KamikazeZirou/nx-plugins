@@ -1,3 +1,18 @@
+/*
+Copyright (c) 2022 KamikazeZirou
+
+Released under the MIT license.
+https://github.com/KamikazeZirou/nx-plugins/blob/main/LICENSE
+
+I have modified the file at the following URL so that I can specify the prefix of the go module path from workspace.json or nx.json.
+https://github.com/nx-go/nx-go/blob/cf139e99bf840d3aaa76ad2cc3b5e73b23c5cb34/packages/nx-go/src/go-package-graph/index.ts
+
+
+Copyright (c) 2020-2021 Bram Borggreve
+
+Released under the MIT license.
+https://github.com/nx-go/nx-go/blob/cf139e99bf840d3aaa76ad2cc3b5e73b23c5cb34/LICENSE
+*/
 import {
     ProjectGraph,
     ProjectGraphBuilder,
