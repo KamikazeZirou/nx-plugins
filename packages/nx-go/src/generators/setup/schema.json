@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "cli": "nx",
+    "$id": "SetupNxGoPlugin",
+    "title": "",
+    "type": "object",
+    "properties": {
+        "goModPath": {
+            "type": "string",
+            "description": "",
+            "x-prompt": "Enter the root path of your go modules."
+        }
+    },
+    "required": []
+}
