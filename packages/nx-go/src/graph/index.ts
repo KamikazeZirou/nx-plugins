@@ -70,7 +70,7 @@ const getGoDependencies = (
     projectRootLookup: Map<string, string>,
     file: string) => {
 
-    const goModPath = context.workspace["goModPath"]
+    const goModPath = context.workspace.pluginsConfig?.['@kz/nx-go']?.['goModPath'] ?? ""
 
     try {
         const goPackageDataJson = execSync('go list -json ./' + file, { encoding: 'utf-8', cwd: workspaceRootPath })
