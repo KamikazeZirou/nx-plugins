@@ -67,7 +67,7 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
-    sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    sourceRoot: normalizedOptions.projectRoot,
     targets: {
       lint: {
         executor: '@nrwl/workspace:run-commands',
@@ -86,7 +86,7 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
       build: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}/dist/${normalizedOptions.projectRoot} main.go`,
+          command: `go build -o ${offsetFromRoot(normalizedOptions.projectRoot)}dist/${normalizedOptions.projectRoot} main.go`,
           cwd: normalizedOptions.projectRoot
         }
       },
