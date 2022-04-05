@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "kz/nx-go": ["packages/nx-go/src/index.ts"]
+      "nx-kz/nx-go": ["packages/nx-go/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
