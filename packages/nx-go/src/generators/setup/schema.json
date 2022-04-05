@@ -7,7 +7,7 @@
     "properties": {
         "goModPath": {
             "type": "string",
-            "description": "",
+            "description": "The root path of go modules in this workspace",
             "x-prompt": "Enter the root path of your go modules."
         }
     },
