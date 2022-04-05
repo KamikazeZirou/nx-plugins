@@ -4,7 +4,7 @@ import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 import generator from './generator';
 import { LibraryGeneratorSchema } from './schema';
 
-describe('nx-go generator', () => {
+describe('go generator', () => {
   let appTree: Tree;
   const options: LibraryGeneratorSchema = { name: 'test' };
 

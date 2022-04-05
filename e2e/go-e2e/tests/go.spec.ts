@@ -5,11 +5,11 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
-describe('nx-go e2e', () => {
-  it('should create nx-go', async () => {
-    const plugin = uniq('nx-go');
-    ensureNxProject('@nx-kz/nx-go', 'dist/packages/nx-go');
-    await runNxCommandAsync(`generate @nx-kz/nx-go:nx-go ${plugin}`);
+describe('go e2e', () => {
+  it('should create go', async () => {
+    const plugin = uniq('go');
+    ensureNxProject('@nx-kz/go', 'dist/packages/go');
+    await runNxCommandAsync(`generate @nx-kz/go:go ${plugin}`);
 
     const result = await runNxCommandAsync(`build ${plugin}`);
     expect(result.stdout).toContain('Executor ran');
@@ -17,10 +17,10 @@ describe('nx-go e2e', () => {
 
   describe('--directory', () => {
     it('should create src in the specified directory', async () => {
-      const plugin = uniq('nx-go');
-      ensureNxProject('@nx-kz/nx-go', 'dist/packages/nx-go');
+      const plugin = uniq('go');
+      ensureNxProject('@nx-kz/go', 'dist/packages/go');
       await runNxCommandAsync(
-        `generate @nx-kz/nx-go:nx-go ${plugin} --directory subdir`
+        `generate @nx-kz/go:go ${plugin} --directory subdir`
       );
       expect(() =>
         checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
@@ -30,10 +30,10 @@ describe('nx-go e2e', () => {
 
   describe('--tags', () => {
     it('should add tags to the project', async () => {
-      const plugin = uniq('nx-go');
-      ensureNxProject('@nx-kz/nx-go', 'dist/packages/nx-go');
+      const plugin = uniq('go');
+      ensureNxProject('@nx-kz/go', 'dist/packages/go');
       await runNxCommandAsync(
-        `generate @nx-kz/nx-go:nx-go ${plugin} --tags e2etag,e2ePackage`
+        `generate @nx-kz/go:go ${plugin} --tags e2etag,e2ePackage`
       );
       const project = readJson(`libs/${plugin}/project.json`);
       expect(project.tags).toEqual(['e2etag', 'e2ePackage']);

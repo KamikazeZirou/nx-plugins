@@ -3,20 +3,20 @@ import { SetupGeneratorSchema } from './schema';
 
 export default async function (tree: Tree, options: SetupGeneratorSchema) {
     const workspaceConfig = readWorkspaceConfiguration(tree)
-    if (workspaceConfig.plugins?.includes('@nx-kz/nx-go')) {
+    if (workspaceConfig.plugins?.includes('@nx-kz/go')) {
         return
     }
 
     if (workspaceConfig.plugins) {
-        workspaceConfig.plugins.push('@nx-kz/nx-go')
+        workspaceConfig.plugins.push('@nx-kz/go')
     } else {
-        workspaceConfig.plugins = ['@nx-kz/nx-go']
+        workspaceConfig.plugins = ['@nx-kz/go']
     }
 
     if (!workspaceConfig.pluginsConfig) {
         workspaceConfig.pluginsConfig = {}
     }
-    workspaceConfig.pluginsConfig['@nx-kz/nx-go'] = {
+    workspaceConfig.pluginsConfig['@nx-kz/go'] = {
         'goModPath': options.goModPath
     }
 

@@ -1,4 +1,4 @@
-# nx-go
+# go
 
 Nx plugin to use Go in a Nx workspace.
 
@@ -12,24 +12,24 @@ Nx plugin to use Go in a Nx workspace.
 
 First, make sure you have a Nx Workspace.
 
-Next, install the nx-go plugin:
+Next, install the go plugin:
 
 ```bash
 ## using npm
-npm install -D @nx-kz/nx-go
+npm install -D @nx-kz/go
 ## Or using yarn
-# yarn add -D @nx-kz/nx-go
+# yarn add -D @nx-kz/go
 ## Or using pnpm
-# pnpm add -D @nx-kz/nx-go
+# pnpm add -D @nx-kz/go
 ```
 
 Generate a go project:
 
 ```bash
 # generating application
-nx g @nx-kz/nx-go:app your-app-name
+nx g @nx-kz/go:app your-app-name
 ## Or generating library
-# nx g @nx-kz/nx-go:lib your-lib-name
+# nx g @nx-kz/go:lib your-lib-name
 ```
 
 ## Usage
@@ -70,7 +70,7 @@ Serves the application using the `go run` command.
 Setup with the following command:
 
 ```bash
-nx g @nx-kz/nx-go:setup
+nx g @nx-kz/go:setup
 ```
 
 Then run the following command:

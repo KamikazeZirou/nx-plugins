@@ -1,5 +1,5 @@
 {
-  "name": "@nx-kz/nx-go",
+  "name": "@nx-kz/go",
   "version": "0.0.5",
   "description": "This is Nx plugin to use Go in a Nx workspace.",
   "keywords": [
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/KamikazeZirou/nx-plugins/issues"
   },
-  "homepage": "https://github.com/KamikazeZirou/nx-plugins/tree/main/packages/nx-go#readme",
+  "homepage": "https://github.com/KamikazeZirou/nx-plugins/tree/main/packages/go#readme",
   "main": "src/index.js",
   "generators": "./generators.json"
 }
