@@ -1,33 +1,33 @@
 {
-  "root": "packages/nx-go",
-  "sourceRoot": "packages/nx-go/src",
+  "root": "packages/go",
+  "sourceRoot": "packages/go/src",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/nx-go",
-        "main": "packages/nx-go/src/index.ts",
-        "tsConfig": "packages/nx-go/tsconfig.lib.json",
+        "outputPath": "dist/packages/go",
+        "main": "packages/go/src/index.ts",
+        "tsConfig": "packages/go/tsconfig.lib.json",
         "assets": [
-          "packages/nx-go/*.md",
+          "packages/go/*.md",
           {
-            "input": "./packages/nx-go/src",
+            "input": "./packages/go/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./packages/nx-go/src",
+            "input": "./packages/go/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./packages/nx-go",
+            "input": "./packages/go",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./packages/nx-go",
+            "input": "./packages/go",
             "glob": "executors.json",
             "output": "."
           }
@@ -38,14 +38,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/nx-go/**/*.ts"]
+        "lintFilePatterns": ["packages/go/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/nx-go"],
+      "outputs": ["coverage/packages/go"],
       "options": {
-        "jestConfig": "packages/nx-go/jest.config.js",
+        "jestConfig": "packages/go/jest.config.js",
         "passWithNoTests": true
       }
     }

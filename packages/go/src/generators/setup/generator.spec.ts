@@ -3,7 +3,7 @@ import { Tree, readWorkspaceConfiguration, updateWorkspaceConfiguration } from '
 
 import generator from './generator'
 
-describe('setup-nx-go-plugin generator', () => {
+describe('setup-go-plugin generator', () => {
   let appTree: Tree
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('setup-nx-go-plugin generator', () => {
     const config = readWorkspaceConfiguration(appTree)
     expect(config.plugins).toBeDefined()
     expect(config.plugins.length).toBe(1)
-    expect(config.plugins[0]).toBe('@nx-go/nx-go')
+    expect(config.plugins[0]).toBe('@go/go')
   })
 
   it('should merge correctly', async () => {
@@ -27,18 +27,18 @@ describe('setup-nx-go-plugin generator', () => {
     config = readWorkspaceConfiguration(appTree)
     expect(config.plugins).toBeDefined()
     expect(config.plugins.length).toBe(2)
-    expect(config.plugins[1]).toBe('@nx-go/nx-go')
+    expect(config.plugins[1]).toBe('@go/go')
   })
 
   it('should do nothing when already defined', async () => {
     let config = readWorkspaceConfiguration(appTree)
-    config.plugins = ['@nx-go/nx-go']
+    config.plugins = ['@go/go']
     updateWorkspaceConfiguration(appTree, config)
 
     await generator(appTree)
     config = readWorkspaceConfiguration(appTree)
     expect(config.plugins).toBeDefined()
     expect(config.plugins.length).toBe(1)
-    expect(config.plugins[0]).toBe('@nx-go/nx-go')
+    expect(config.plugins[0]).toBe('@go/go')
   })
 })

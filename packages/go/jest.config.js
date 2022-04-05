@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'nx-go-e2e',
+  displayName: 'go',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/e2e/nx-go-e2e',
+  coverageDirectory: '../../coverage/packages/go',
 };
